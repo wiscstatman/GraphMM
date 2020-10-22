@@ -155,11 +155,17 @@ GraphMM1 = function(dataG1, dataG2, datatype, folder, est_null, prior.null,
   }
   if (datatype == "matrix")
   {
-    Pspantree1 = unlist(pbmcapply::pbmclapply(1:dim(IndexList)[1], GetPostProb_matrix, dat1.vec, dat2.vec,
-                                size.im, folder, est_hyper, ListPara, IndicatorVector, IndexList, mccores,
-                              mc.cores = 1))
-    
-    Pspantree = matrix(Pspantree1, nrow = size.im[1], ncol = size.im[2])
+##    Pspantree1 = unlist(pbmcapply::pbmclapply(1:dim(IndexList)[1], GetPostProb_matrix, dat1.vec, dat2.vec,
+##                               size.im, folder, est_hyper, ListPara, IndicatorVector, IndexList, mccores,
+##                              mc.cores = 1))
+##    Pspantree = matrix(Pspantree1, nrow = size.im[1], ncol = size.im[2])
+##    Pspantree = matrix(Pspantree1, nrow = size.im[1], ncol = size.im[2])
+
+    # just do central node of 3x3
+    Pspantree1 =  GetPostProb_matrix(5, dat1.vec, dat2.vec,
+                               size.im, folder, est_hyper, ListPara, IndicatorVector, IndexList, mccores,
+                              mc.cores = 1)
+    Pspantree = Pspantree1
   }
   unlink(folder, recursive = T)
   return(Pspantree)
