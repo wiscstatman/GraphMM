@@ -163,8 +163,8 @@ GraphMM1 = function(dataG1, dataG2, datatype, folder, est_null, prior.null,
 
     # just do central node of 3x3
     Pspantree1 =  GetPostProb_matrix(5, dat1.vec, dat2.vec,
-                               size.im, folder, est_hyper, ListPara, IndicatorVector, IndexList, mccores,
-                              mc.cores = 1)
+                               size.im, folder, est_hyper, ListPara, IndicatorVector, IndexList, mccores)
+                              
     Pspantree = Pspantree1
   }
   unlink(folder, recursive = T)
